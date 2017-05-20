@@ -4,5 +4,5 @@
 
 本人阅读的react版本为16.0.0-alpha.12。
 
-在这个版本，facebook正准备将createClass和PropTypes移除。
+在这个版本，facebook正准备将createClass和PropTypes移除。并且在这个版本中，fackbook引入了React Fiber，改变了原先的diff算法\(stack Reconciler\)。
 
