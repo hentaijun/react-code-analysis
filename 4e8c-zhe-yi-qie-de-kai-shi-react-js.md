@@ -28,13 +28,9 @@ var React = {
   checkPropTypes: checkPropTypes,
   createClass: createReactClass,
 
-  // Classic
-
   createFactory: createFactory,
   createMixin: createMixin,
 
-  // This looks DOM specific but these are actually isomorphic helpers
-  // since they are just generating DOM strings.
   DOM: ReactDOMFactories,
 
   version: ReactVersion,
@@ -85,8 +81,9 @@ ReactComponent.prototype.setState = function(partialState, callback) {
 ReactComponent.prototype.forceUpdate = function(callback) {
   this.updater.enqueueForceUpdate(this, callback, 'forceUpdate');
 };
-
 ```
 
 通过上面的代码，我们可以看到ReactComponent是一个构造函数，并且里面有setState和forceUpdate这两个方法。
+
+在我们日常写组件的时候，必定需要写一个render方法然后里面return一直JSX的代码。而JSX其实是一种语法糖，他其实是调用了React.createElement的方法，因此我们来进一步看一下createElement方法里到底有什么。
 
