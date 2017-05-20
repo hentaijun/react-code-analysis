@@ -120,12 +120,50 @@ var ReactElement = function(type, key, ref, self, source, owner, props) {
 };
 ```
 
-在这里可以看出来ReactElement其实就是一个对象，里面包括了$$type,type,key,ref,props,\_owner。首先看看$$type
+在这里可以看出来ReactElement其实就是一个对象，里面包括了`type,$$typeof,key,ref,__owner`，首先来看看`$$typeof`
 
 ```
 var REACT_ELEMENT_TYPE =
   (typeof Symbol === 'function' && Symbol.for && Symbol.for('react.element')) ||
   0xeac7;
+```
+
+这其实是一个ReactElement的标识，来判断这个对象是否是一个ReactElement的，然后\_owner则是描述当前节点。
+
+现在有了ReactElement了，那我们需要将这一个ReactElement渲染到浏览器上，自然需要一个render方法。
+
+#### render
+
+在我们使用react的时候，会发现我们总共会写两种render，一种是在组件中写的render方法，第二个则是在ReactDom.render方法，首先我们来看一下第一种，第一种的本质其实是返回了我们React.createElement得到的ReactElement。而第二种则是将这一个ReactElement渲染到浏览器的方法。因此我们先找到ReactDom
+
+> path:src\renderers\dom\ReactDOM.js
+
+在这文件中，我们看到了一个ReactDOM的对象，其中包含了它暴露的API
+
+```
+var ReactDOM = {
+  findDOMNode: findDOMNode,
+  render: ReactMount.render,
+  unmountComponentAtNode: ReactMount.unmountComponentAtNode,
+  version: ReactVersion,
+
+  /* eslint-disable camelcase */
+  unstable_batchedUpdates: ReactGenericBatching.batchedUpdates,
+  unstable_renderSubtreeIntoContainer: ReactMount.renderSubtreeIntoContainer,
+  /* eslint-enable camelcase */
+
+  __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED: {
+    // For TapEventPlugin which is popular in open source
+    EventPluginHub: require('EventPluginHub'),
+    // Used by test-utils
+    EventPluginRegistry: require('EventPluginRegistry'),
+    EventPropagators: require('EventPropagators'),
+    ReactControlledComponent: require('ReactControlledComponent'),
+    ReactDOMComponentTree,
+    ReactDOMEventListener: require('ReactDOMEventListener'),
+    ReactUpdates: ReactUpdates,
+  },
+};
 ```
 
 
