@@ -10,7 +10,7 @@
 
 通过编译，以上代码会变成
 
-```
+```js
 React.createElement('div',{
     className:"div"
 },React.createElement(MyComponent,{
@@ -29,7 +29,7 @@ React.createElement('div',{
 
 首先来看一下，createElement的方法，最后返回的是一个ReactElement的方法
 
-```
+```js
 ReactElement.createElement = function(type, config, children) {
   var propName;
 
@@ -101,7 +101,7 @@ ReactElement.createElement = function(type, config, children) {
 
 #### ReactElement
 
-```
+```js
 var ReactElement = function(type, key, ref, self, source, owner, props) {
   var element = {
     // This tag allow us to uniquely identify this as a React Element
@@ -122,7 +122,7 @@ var ReactElement = function(type, key, ref, self, source, owner, props) {
 
 在这里可以看出来ReactElement其实就是一个对象，里面包括了`type,$$typeof,key,ref,__owner`，首先来看看`$$typeof`
 
-```
+```js
 var REACT_ELEMENT_TYPE =
   (typeof Symbol === 'function' && Symbol.for && Symbol.for('react.element')) ||
   0xeac7;
@@ -140,7 +140,7 @@ var REACT_ELEMENT_TYPE =
 
 在这文件中，我们看到了一个ReactDOM的对象，其中包含了它暴露的API
 
-```
+```js
 var ReactDOM = {
   findDOMNode: findDOMNode,
   render: ReactMount.render,

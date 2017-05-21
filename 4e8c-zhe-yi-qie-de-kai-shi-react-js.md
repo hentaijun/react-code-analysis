@@ -2,7 +2,7 @@
 
 > path: src/isomorphic/
 
-当找到了新世界的大门后，我们当然要看一下这里面包含了一些什么。\(_注:为了好看，贴出来的代码全部将\_\_DEV判断的代码干掉了，在\_\_DEV\_\_代码中，多数为一些校验和一些错误提示_\)
+当找到了新世界的大门后，我们当然要看一下这里面包含了一些什么。\(_注:为了好看，贴出来的代码全部将\_\_DEV判断的代码干掉了，在\_\_DEV\_\_代码中，多数为一些校验和一些错误提示\_\)
 
 ```js
 var React = {
@@ -51,7 +51,7 @@ class MyComponent extends React.Component
 
 在这里稍微简单的说一下react的模块化，在我们见到代码中
 
-```
+```js
 var ReactBaseClasses = require('ReactBaseClasses');
 var ReactChildren = require('ReactChildren');
 var ReactDOMFactories = require('ReactDOMFactories');
@@ -66,7 +66,7 @@ var ReactVersion = require('ReactVersion');
 
 > path: src/isomorphic/modern/class/ReactBaseClasses.js
 
-```
+```js
 function ReactComponent(props, context, updater) {
   this.props = props;
   this.context = context;
