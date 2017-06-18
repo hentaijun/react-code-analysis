@@ -168,5 +168,60 @@ var ReactDOM = {
 };
 ```
 
+其中在使用react中，在入口文件会写一个`ReactDom.render(<p>"Hello world"</p>,document.getElementById("root"));`
+
+这个是react的入口，通过这个方法来生成整一个dom tree,然后插入到Id为root的节点中。
+
+因此我们去看一下ReactMount.js 中的render方法
+
+> path:src\renderers\dom\stack\client\ReactMount.js
+
+        /**
+       * Renders a React component into the DOM in the supplied `container`.
+       * See https://facebook.github.io/react/docs/react-dom.html#render
+       *
+       * If the React component was previously rendered into `container`, this will
+       * perform an update on it and only mutate the DOM as necessary to reflect the
+       * latest React component.
+       *
+       * @param {ReactElement} nextElement Component element to render.
+       * @param {DOMElement} container DOM element to render into.
+       * @param {?function} callback function triggered on completion
+       * @return {ReactComponent} Component instance rendered in `container`.
+       */
+      render: function(nextElement, container, callback) {
+        return ReactMount._renderSubtreeIntoContainer(
+          null,
+          nextElement,
+          container,
+          callback,
+        );
+      },
+
+首先看一下render方法的参数，第一个参数nextElement，通过描述说的是下一个要渲染的组件元素，第二个DomElement是要渲染进去的容器的Dom元素。最后返回的渲染在容器中的组件实例。
+
+接着去看一下\_renderSubtreeIntoContainer方法
+
+```
+ _renderSubtreeIntoContainer: function(
+    parentComponent,
+    nextElement,
+    container,
+    callback,
+  ) {
+   var nextWrappedElement = React.createElement(TopLevelWrapper, {
+      child: nextElement,
+   });
+   var component = ReactMount._renderNewRootComponent(
+      nextWrappedElement,
+      container,
+      shouldReuseMarkup,
+      nextContext,
+      callback,
+    )._renderedComponent.getPublicInstance();
+    return component;
+  }
+```
+
 
 
