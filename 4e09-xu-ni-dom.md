@@ -220,6 +220,16 @@ var ReactDOM = {
       callback,
     )._renderedComponent.getPublicInstance();
     return component;
+  },
+ _renderNewRootComponent: function(
+    nextElement,
+    container,
+    shouldReuseMarkup,
+    context,
+    callback,
+  ) {
+     var componentInstance = instantiateReactComponent(nextElement, false);
+     return componentInstance;
   }
 ```
 
