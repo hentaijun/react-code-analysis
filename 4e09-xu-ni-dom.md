@@ -202,7 +202,7 @@ var ReactDOM = {
 
 接着去看一下\_renderSubtreeIntoContainer方法
 
-```
+```js
  _renderSubtreeIntoContainer: function(
     parentComponent,
     nextElement,
