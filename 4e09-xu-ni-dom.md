@@ -120,7 +120,9 @@ var ReactElement = function(type, key, ref, self, source, owner, props) {
 };
 ```
 
-在这里可以看出来ReactElement其实就是一个对象，里面包括了`type,$$typeof,key,ref,__owner`，首先来看看`$$typeof`
+在这里可以看出来ReactElement其实就是一个对象，而这个就是react中的虚拟DOM，在其中里面包括了`type,$$typeof,key,ref,__owner`的属性。
+
+首先来看看`$$typeof`
 
 ```js
 var REACT_ELEMENT_TYPE =
